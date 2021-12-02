@@ -11,10 +11,6 @@ int main() {
 	
 	ifstream input("input");
 	
-	
-	bool isRules = true;
-	
-	
 	int last = -1;
 	int current = -1;
 	
