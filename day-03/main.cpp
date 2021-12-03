@@ -78,14 +78,40 @@ int binaryStringToInt(string s){
 	
 }
 
-int main() {
+int filterListByMask(vector<string> list, int inputLength, bool onGamma = true){
+	
+	int pointer = 0;
+	
+	do{
+		
+		vector<string> aux;
+		
+		int *count = calculateGamma(list);
+		Result rtmp = convertCount(count, inputLength, list.size());
+		
+		for(auto current: list){
+			if(rtmp.gamma.at(pointer) == current.at(pointer) && onGamma) {
+				aux.push_back(current);
+			}
+			if(rtmp.epsilon.at(pointer) == current.at(pointer) && !onGamma) {
+				aux.push_back(current);
+			}
+		}
+		
+		pointer++;
+		list = aux;
+		
+		
+	}while(list.size() > 1);
+	
+	return binaryStringToInt(list[0]);
+	
+}
+
+vector<string> getInput(){
 	
 	ifstream input("input");
-
-	int lines = 0;
-	int inputLength = 0;
-	
-	vector<string> initialList;
+	vector<string> list;
 	
 	if (input.is_open()) {
 		string tmp;
@@ -93,71 +119,33 @@ int main() {
 		while(getline(input, tmp)){
 			
 			trim(tmp);
-			
-			if(!inputLength)
-				inputLength = tmp.length();
-				
-			initialList.push_back(tmp);
-			lines++;
+			list.push_back(tmp);
 			
 		}
 		input.close();
 	}
+	
+	return list;
+	
+}
+
+
+
+int main() {
+	
+	vector<string> initialList = getInput();
+	int lines = initialList.size();
+	int inputLength = initialList[0].length();
 	
 	// Part 1
 	
 	int *count = calculateGamma(initialList);
 	Result r1 = convertCount(count, inputLength, lines);
 	
-	
 	// Part 2
 	
-	int oxygenPointer = 0;
-	vector<string> oxygenList = initialList;
-	
-	do{
-		
-		vector<string> aux;
-		
-		int *count = calculateGamma(oxygenList);
-		Result rtmp = convertCount(count, inputLength, oxygenList.size());
-		
-		for(auto current: oxygenList){
-			if(rtmp.gamma.at(oxygenPointer) == current.at(oxygenPointer)) {
-				aux.push_back(current);
-			}
-		}
-		
-		oxygenPointer++;
-		oxygenList = aux;
-		
-		
-	}while(oxygenList.size() > 1);
-	
-	vector<string> co2List = initialList;
-	int co2Pointer = 0;
-	
-	do{
-		
-		vector<string> aux;
-		
-		int *count = calculateGamma(co2List);
-		Result rtmp = convertCount(count, inputLength, co2List.size());
-		
-		for(auto current: co2List){
-			if(rtmp.epsilon.at(co2Pointer) == current.at(co2Pointer)) {
-				aux.push_back(current);
-			}
-		}
-		
-		co2Pointer++;
-		co2List = aux;
-		
-		
-	}while(co2List.size() > 1);
-	
-	int oxygen = binaryStringToInt(oxygenList[0]);
-	int co2 = binaryStringToInt(co2List[0]);
+	int oxygen = filterListByMask(initialList, inputLength);
+	int co2 = filterListByMask(initialList, inputLength, false);
 	
 	
 	int totalP1 = r1.gammaVal * r1.epsilonVal;
