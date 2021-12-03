@@ -2,3 +2,4 @@ boost_*/
 .idea/
 input
 *.exe
+cmake-build-debug
