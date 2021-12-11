@@ -6,17 +6,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(Sources day-01/main.cpp)
 add_executable(day-01 ${Sources})
 
-set(Sources day-02/main.cpp)
-add_executable(day-02 ${Sources})
+set(Sources2 day-02/main.cpp)
+add_executable(day-02 ${Sources2})
 
-set(Sources day-03/main.cpp)
-add_executable(day-03 ${Sources})
+set(Sources3 day-03/main.cpp)
+add_executable(day-03 ${Sources3})
 
-set(Sources day-04/main.cpp)
-add_executable(day-04 ${Sources})
+set(Sources4 day-04/main.cpp)
+add_executable(day-04 ${Sources4})
 
-set(Sources day-05/main.cpp)
-add_executable(day-05 ${Sources})
+set(Sources5 day-05/main.cpp)
+add_executable(day-05 ${Sources5})
 
 set(Sources6 day-06/main.cpp)
 add_executable(day-06 ${Sources6})
@@ -32,3 +32,6 @@ add_executable(day-09 ${Sources9})
 
 set(Sources10 day-10/main.cpp)
 add_executable(day-10 ${Sources10})
+
+set(Sources11 day-11/main.cpp)
+add_executable(day-11 ${Sources11})
