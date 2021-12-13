@@ -1,10 +1,9 @@
-#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <map>
 #include <vector>
 #include <string>
-#include <cmath>
+#include <chrono>
 
 #include <boost/algorithm/string.hpp>
 
@@ -157,14 +156,21 @@ int main() {
 		
 	}
 	
+	auto started = std::chrono::high_resolution_clock::now();
 	vector<string> resultsP1  = visitAllNodes(nodes, "", "start", 1);
+	auto done = std::chrono::high_resolution_clock::now();
+	auto p1time = std::chrono::duration_cast<std::chrono::milliseconds>(done-started).count();
+	
+	started = std::chrono::high_resolution_clock::now();
 	vector<string> resultsP2  = visitAllNodes(nodes, "", "start", 2);
+	done = std::chrono::high_resolution_clock::now();
+	auto p2time = std::chrono::duration_cast<std::chrono::milliseconds>(done-started).count();
 	
 	unsigned long int totalP1 = resultsP1.size();
 	unsigned long int totalP2 = resultsP2.size();;
 	
-	cout << "Part 1: " << totalP1 << endl;
-	cout << "Part 2: " << totalP2 << endl;
+	cout << "Part 1: " << totalP1 << " In " << p1time << "ms" <<  endl;
+	cout << "Part 2: " << totalP2 << " In " << p2time << "ms" <<  endl;
 	
 	return 0;
 	
