@@ -2,13 +2,10 @@
 #include <fstream>
 #include <map>
 #include <vector>
-#include <string>
 #include <chrono>
+#include <boost/algorithm/string.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/dijkstra_shortest_paths.hpp>
-#include <stdio.h>
-#include <boost/algorithm/string.hpp>
-#include <algorithm>
 
 #define DEBUG 1
 
