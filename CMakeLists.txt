@@ -47,3 +47,9 @@ add_executable(day-14 ${Sources14})
 
 set(Sources15 day-15/main.cpp)
 add_executable(day-15 ${Sources15})
+
+set(Sources16 day-16/main.cpp)
+add_executable(day-16 ${Sources16})
+
+set(Sources17 day-17/main.cpp)
+add_executable(day-17 ${Sources17})
